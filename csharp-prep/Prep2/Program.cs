@@ -7,22 +7,40 @@ class Program
         Console.Write("Enter Percentage you obtained? ");
         string UserValue= Console.ReadLine();
         int x = int.Parse(UserValue);
-
+        string letter=" ";
+        
         if (x>=90)
         {
-            Console.Write(" Congratulation you got A");
+            letter ="A";
         }
         else if (x>=80)
         {
-            Console.Write("Congratulation you got B");
+            letter="B";
         }
         else if(x>=70)
         {
-            Console.Write("Congratulation you got C");
+            letter="C";
         }
-        else if(x<70)
+        else if(x>=60)
         {
-            Console.Write("Sorry, put more effort next time ");
+            letter="D";
+        }
+        else if(x>=50)
+        {
+            letter="E";
+        }
+        else
+        {
+            letter="F";
+        }
+        Console.Write($"Your Grade is:{letter} ");
+        if (x>=70)
+        {
+            Console.WriteLine("You have Passed");
+        }
+        else
+        {
+            Console.WriteLine("Better Luck Next Time!");
         }
     }
 }
