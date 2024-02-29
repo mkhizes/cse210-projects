@@ -16,13 +16,13 @@ class Program
     
         
         Console.Write("What is your name?  ");
-        string first_name = Console.ReadLine();
+        string firstName = Console.ReadLine();
         
 
         Console.Write("What is your last name?  ");
-        string last_name = Console.ReadLine();
+        string lastName = Console.ReadLine();
         
 
-        Console.WriteLine($"Your name is {last_name}, {first_name} {last_name}. ");
+        Console.WriteLine($"Your name is {lastName}, {firstName} {lastName}. ");
     }
 }
