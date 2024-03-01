@@ -16,7 +16,9 @@ class Program
 
         Console.WriteLine($"Your name is {lastName}, {firstName} {lastName}. ");
 
-        Console.Write("Enter Percentage you obtained? ");
+        
+        
+        Console.WriteLine("Enter Percentage you obtained? ");
         string UserValue= Console.ReadLine();
         int x = int.Parse(UserValue);
 
