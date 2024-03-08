@@ -9,7 +9,7 @@ List<Entry> entriesList = new List<Entry>();
 
     public void AddEntry(Entry newEntry)
     {
-     
+       entriesList.Add(newEntry); 
     }
     public void DisplayAll()
     {
