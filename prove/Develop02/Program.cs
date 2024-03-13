@@ -53,24 +53,24 @@ class Program
 
 
         Entry e3= new Entry();
-        e3._date="09/02/2020";
+        e3._date="09/03/2024";
         e3._promptText="How did I see the hand of the Lord in my life today?";
-        e3._entryText="";
+        e3._entryText="The way things has been through out this day,which signifies the blessings and the Lord's existence in my life";
 
         Entry e4= new Entry();
-        e4._date="08/02/2020";
+        e4._date="08/03/2024";
         e4._promptText="What was the strongest emotion I felt today?";
-        e4._entryText="";
+        e4._entryText="I felt Joyous and rejuvenated";
 
         Entry e5= new Entry();
-        e5._date="07/02/2020";
+        e5._date="07/03/2024";
         e5._promptText="If I had one thing I could do over today, what would it be?";
-        e5._entryText="";
+        e5._entryText="Listen to the Holy Spirit as He prompts me";
 
         Entry e6= new Entry();
-        e6._date="08/02/2020";
+        e6._date="12/03/2024";
         e6._promptText="What was the overall life experience and lesson I learned today?";
-        e6._entryText="";
+        e6._entryText=" Great Spiritual experience and the lesson being obedience";
 
          List<Entry> entries=new List<Entry>();
          entries.Add(e1);
