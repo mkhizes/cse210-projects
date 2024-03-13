@@ -3,21 +3,21 @@ using System;
 public class Word
 
     {
-    private string text;
+    private string _text;
 
     public Word(string text)
     {
-        this.text = text;
+        this._text = text;
     }
 
     public string GetText()
     {
-        return text;
+        return _text;
     }
 
     public void Hide()
     {
-        text = "______"; // Replace the word with underscores to hide it
+        _text = "______"; // Replace the word with underscores to hide it
     }
 
 }

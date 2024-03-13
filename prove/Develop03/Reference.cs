@@ -1,32 +1,32 @@
 public class Reference
 {
-    private int chapter;
-    private int startVerse;
-    private int endVerse;
+    private int _chapter;
+    private int _startVerse;
+    private int _endVerse;
 
     public Reference(int chapter, int startVerse)
     {
-        this.chapter = chapter;
-        this.startVerse = startVerse;
-        this.endVerse = startVerse;
+        this._chapter = chapter;
+        this._startVerse = startVerse;
+        this._endVerse = startVerse;
     }
 
     public Reference(int chapter, int startVerse, int endVerse)
     {
-        this.chapter = chapter;
-        this.startVerse = startVerse;
-        this.endVerse = endVerse;
+        this._chapter = chapter;
+        this._startVerse = startVerse;
+        this._endVerse = endVerse;
     }
 
     public override string ToString()
     {
-        if (startVerse == endVerse)
+        if (_startVerse == _endVerse)
         {
-            return $"{chapter}:{startVerse}";
+            return $"{_chapter}:{_startVerse}";
         }
         else
         {
-            return $"{chapter}:{startVerse}-{endVerse}";
+            return $"{_chapter}:{_startVerse}-{_endVerse}";
         }
     }
 }

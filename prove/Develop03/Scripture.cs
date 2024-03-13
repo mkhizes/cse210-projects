@@ -3,21 +3,21 @@ using System.Collections.Generic;
 public class Scripture{
 
 
-    private Reference reference;
-    private List<Word> words;
+    private Reference _reference;
+    private List<Word> _words;
 
     public Scripture(Reference reference, List<Word> words)
     {
-        this.reference = reference;
-        this.words = words;
+        this._reference = reference;
+        this._words = words;
     }
 
     public void Display()
     {
-        Console.WriteLine($"Scripture Reference: {reference}");
+        Console.WriteLine($"Scripture Reference: {_reference}");
         Console.WriteLine("Content:");
 
-        foreach (var word in words)
+        foreach (var word in _words)
         {
             Console.Write(word.GetText() + " ");
         }
@@ -28,17 +28,17 @@ public class Scripture{
     public void HideRandomWord()
     {
         Random random = new Random();
-        int index = random.Next(words.Count);
+        int index = random.Next(_words.Count);
 
-        if (!words[index].GetText().Equals("______")) // Check if the word is not already hidden
+        if (!_words[index].GetText().Equals("______")) // Check if the word is not already hidden
         {
-            words[index].Hide();
+            _words[index].Hide();
         }
     }
 
     public bool AllWordsHidden()
     {
-        return words.All(word => word.GetText().Equals("______"));
+        return _words.All(word => word.GetText().Equals("______"));
     }
 }
 
