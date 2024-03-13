@@ -3,7 +3,7 @@ using System;
 class Program
 {
     static void Main(string[] args){
-        // Example usage
+        
         Word word1 = new Word("For");
         Word word2 = new Word("God");
         Word word3 = new Word("so");
