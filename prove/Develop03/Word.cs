@@ -17,7 +17,7 @@ public class Word
 
     public void Hide()
     {
-        _text = "______"; // Replace the word with underscores to hide it
+        _text = "______"; 
     }
 
 }

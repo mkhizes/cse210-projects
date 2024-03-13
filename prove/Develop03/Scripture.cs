@@ -30,7 +30,7 @@ public class Scripture{
         Random random = new Random();
         int index = random.Next(_words.Count);
 
-        if (!_words[index].GetText().Equals("______")) // Check if the word is not already hidden
+        if (!_words[index].GetText().Equals("______")) 
         {
             _words[index].Hide();
         }
