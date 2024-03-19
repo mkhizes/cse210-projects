@@ -1,5 +1,6 @@
 public class Reference
 {
+    private string _book;
     private int _chapter;
     private int _startVerse;
     private int _endVerse;
@@ -26,7 +27,7 @@ public class Reference
         }
         else
         {
-            return $"{_chapter}:{_startVerse}-{_endVerse}";
+            return $"{_book}-{_chapter}:{_startVerse}-{_endVerse}";
         }
     }
 }
