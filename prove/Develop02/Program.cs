@@ -3,102 +3,162 @@ using System.Collections.Generic;
 using System.IO;
 class Program
 {
+    static List<Entry> journal = new List<Entry>();
+
     static void Main(string[] args)
-    
+    {
+        LoadJournal();
 
-    { 
-        Console.WriteLine("Welcome to the Journal Program");
-        Console.WriteLine("Please select one of the following choices  ");
-               
-        Console.WriteLine("1.Write");
-        Console.WriteLine("2.Display");
-        Console.WriteLine("3.Load");
-        Console.WriteLine("4.Save");
-        Console.WriteLine("5.Quit");
-        Console.WriteLine("What would you like to do?  ");
-        int choice=Console.Read();
-
-       if (choice==1)
-       {
-        string userinput=Console.ReadLine();
-        // You can add text to the file with the WriteLine method
-                
-       }
-        else if(choice==2)
+        while (true)
         {
-            Console.WriteLine("entries.txt");
+            DisplayMenu();
+            int choice = GetUserChoice();
+
+            switch (choice)
+            {
+                case 1:
+                    WriteNewEntry();
+                    break;
+
+                case 2:
+                    DisplayJournal();
+                    break;
+
+                case 3:
+                    SaveJournalToFile();
+                    break;
+
+                case 4:
+                    LoadJournalFromFile();
+                    break;
+
+                case 5:
+                    Console.WriteLine("Exiting the program. Goodbye!");
+                    return;
+
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
         }
-        else if(choice==3)
+    }
+
+    static void DisplayMenu()
+    {
+        Console.WriteLine("Journal Program Menu:");
+        Console.WriteLine("1. Write a new entry");
+        Console.WriteLine("2. Display the journal");
+        Console.WriteLine("3. Save the journal to a file");
+        Console.WriteLine("4. Load the journal from a file");
+        Console.WriteLine("5. Exit");
+    }
+
+    static int GetUserChoice()
+    {
+        int choice;
+        while (!int.TryParse(Console.ReadLine(), out choice))
         {
-          Console.WriteLine("entries.txt");  
+            Console.WriteLine("Invalid input. Please enter a number.");
         }
-        else if(choice==4)
+        return choice;
+    }
+
+    static void WriteNewEntry()
+    {
+        Console.WriteLine("Writing a new entry...");
+
+        Console.WriteLine("Choose a prompt from the list:");
+        string[] prompts = {
+            "Who was the most interesting person I interacted with today?",
+            "What was the best part of my day?",
+            "How did I see the hand of the Lord in my life today?",
+            "What was the strongest emotion I felt today?",
+            "If I had one thing I could do over today, what would it be?"
+        };
+        for (int i = 0; i < prompts.Length; i++)
         {
-            Console.WriteLine("entries.txt");
+            Console.WriteLine($"{i + 1}. {prompts[i]}");
         }
-        else if(choice==5)
+
+        int promptIndex = GetUserChoice() - 1;
+        if (promptIndex >= 0 && promptIndex < prompts.Length)
         {
-            Console.WriteLine("Thank you, GoodBye!!!");
+            Console.WriteLine($"Enter your response to the prompt: '{prompts[promptIndex]}'");
+            string response = Console.ReadLine();
+            journal.Add(new Entry(prompts[promptIndex], response, DateTime.Now));
+            Console.WriteLine("Entry added successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Invalid prompt selection.");
+        }
+    }
+
+    static void DisplayJournal()
+    {
+        Console.WriteLine("Journal Entries:");
+
+        foreach (var entry in journal)
+        {
+            Console.WriteLine($"Date: {entry.Date}, Prompt: {entry.Prompt}, Response: {entry.Response}");
+        }
+    }
+
+    static void SaveJournalToFile()
+    {
+        Console.WriteLine("Enter a filename to save the journal:");
+        string filename = Console.ReadLine();
+
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+            foreach (var entry in journal)
+            {
+                writer.WriteLine($"{entry.Date},{entry.Prompt},{entry.Response}");
+            }
         }
 
-        Entry e1= new Entry();
-        e1._date="11/02/2020";
-        e1._promptText="Who was the most interesting person I interacted with today?";
-        e1._entryText="Journal entry";
+        Console.WriteLine("Journal saved to file successfully.");
+    }
 
-        Entry e2= new Entry();
-        e2._date="10/02/2020";
-        e2._promptText="What was the best part of my day?";
-        e2._entryText="";
+    static void LoadJournalFromFile()
+    {
+        Console.WriteLine("Enter the filename to load the journal:");
+        string filename = Console.ReadLine();
 
+        if (File.Exists(filename))
+        {
+            journal.Clear();
 
-        Entry e3= new Entry();
-        e3._date="09/03/2024";
-        e3._promptText="How did I see the hand of the Lord in my life today?";
-        e3._entryText="The way things has been through out this day,which signifies the blessings and the Lord's existence in my life";
-
-        Entry e4= new Entry();
-        e4._date="08/03/2024";
-        e4._promptText="What was the strongest emotion I felt today?";
-        e4._entryText="I felt Joyous and rejuvenated";
-
-        Entry e5= new Entry();
-        e5._date="07/03/2024";
-        e5._promptText="If I had one thing I could do over today, what would it be?";
-        e5._entryText="Listen to the Holy Spirit as He prompts me";
-
-        Entry e6= new Entry();
-        e6._date="12/03/2024";
-        e6._promptText="What was the overall life experience and lesson I learned today?";
-        e6._entryText=" Great Spiritual experience and the lesson being obedience";
-
-         List<Entry> entries=new List<Entry>();
-         entries.Add(e1);
-         entries.Add(e2);
-         entries.Add(e3);
-         entries.Add(e4);
-         entries.Add(e5);
-         entries.Add(e6);
-        
-         foreach (Entry e in entries)
-         {
-            Console.WriteLine(e._promptText);
-         }
-         SaveToFile(entries);
-     }
-         public static void SaveToFile( List<Entry> entries)
-         {
-             Console.WriteLine("Saving to file...now!!!!!!!!!!!!...........");
-             string filename="entries.txt";
-
-             using (StreamWriter outputFile=new StreamWriter(filename))
-             {
-                 //writting entry data into the entries.txt  file 
-                 foreach(Entry d in entries)
+            using (StreamReader reader = new StreamReader(filename))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    outputFile.WriteLine($"{d._date},{d._promptText},{d._entryText}");
+                    string[] parts = line.Split(',');
+                    if (parts.Length == 3)
+                    {
+                        DateTime date;
+                        if (DateTime.TryParse(parts[0], out date))
+                        {
+                            journal.Add(new Entry(parts[1], parts[2], date));
+                        }
+                    }
                 }
-             }
+            }
+
+            Console.WriteLine("Journal loaded from file successfully.");
         }
+        else
+        {
+            Console.WriteLine("File does not exist.");
+        }
+    }
+
+    static void LoadJournal()
+    {
+        if (File.Exists("journal.txt"))
+        {
+            LoadJournalFromFile();
+        }
+    }
 }
-    

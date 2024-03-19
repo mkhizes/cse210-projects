@@ -1,26 +1,27 @@
 using System.IO;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 public class Journal
 {
-    public List<Entry>_entries;
-     // Create a list
-List<Entry> entriesList = new List<Entry>();
-    public void AddEntry(Entry newEntry)
-    {
-        entriesList.Add(newEntry); 
-    }
-    public void DisplayAll()
-    {
-        Console.WriteLine(_entries);
-    }
-    public void SaveToFile(string file)
-    {
-Console.WriteLine("Saving to file...");
-            
-    }
-    public void LoadFromFile(string file)
-    {
-        return;
-    }
+private List<Entry> _entries=new List<Entry>();
+
+public void AddEntry()
+{
+return;
 }
+public void DisplayAll()
+{
+return;
+}
+public void SaveToFile()
+{
+return;
+}
+public void LoadToFile()
+{
+    return;
+}
+
+}
+
